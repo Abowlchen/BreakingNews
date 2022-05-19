@@ -41,7 +41,6 @@ $(function() {
             },
             success: (res) => {
                 if (res.status !== 0) {
-
                     return layer.msg("注册失败！");
                 }
                 layer.msg('注册成功！');
