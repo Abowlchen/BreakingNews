@@ -1,5 +1,18 @@
 $(function() {
     getUserInfo();
+    const layer = layui.layer;
+    // 退出登录
+    $("#btnLogout").click(() => {
+        layer.confirm(
+            "确定退出登录？", { icon: 3, title: "" },
+            function(index) {
+                // 清空本地存储里面的 token
+                localStorage.removeItem("token");
+                // 重新跳转到登录页面
+                location.href = "/login.html";
+            }
+        );
+    });
 
 });
 const layer = layui.layer;
@@ -8,9 +21,9 @@ function getUserInfo() {
     $.ajax({
         type: 'GET',
         url: '/my/userinfo',
-        headers: {
-            Authorization: localStorage.getItem("token"),
-        },
+        // headers: {
+        //     Authorization: localStorage.getItem("token"),
+        // },
         success: (res) => {
             if (res.status !== 0) {
                 return layer.msg('获取信息失败！');
