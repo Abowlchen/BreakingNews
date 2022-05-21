@@ -31,6 +31,15 @@ function getUserInfo() {
             layer.msg('获取信息成功！');
             renderAvatar(res.data);
         },
+        complete: (res) => {
+            console.log(res);
+            if (res.responseJSON.status !== 0 && res.responseJSON.message === "身份认证失败！") {
+                //  强制清空 token
+                localStorage.removeItem("token");
+                // 强制跳转到登录页面
+                location.href = "/login.html"
+            }
+        }
     });
 };
 
