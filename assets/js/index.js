@@ -32,7 +32,7 @@ function getUserInfo() {
             renderAvatar(res.data);
         },
         complete: (res) => {
-            console.log(res);
+            // console.log(res);
             if (res.responseJSON.status !== 0 && res.responseJSON.message === "身份认证失败！") {
                 //  强制清空 token
                 localStorage.removeItem("token");
@@ -44,7 +44,7 @@ function getUserInfo() {
 };
 
 function renderAvatar(user) {
-    console.log(user);
+    // console.log(user);
     const uname = user.nickname || user.username;
     $('#welcome').html(`欢迎${uname}`);
     if (user.user_pic !== null) {
@@ -54,4 +54,8 @@ function renderAvatar(user) {
         $('.layui-nav-img').hide();
         $('.text-avatar').html(`${uname[0].toUpperCase()}`).show();
     }
+}
+
+function change() {
+    $('#art_list').addClass('layui-this').next().removeClass('layui-this');
 }
